@@ -92,17 +92,6 @@ class _Nongoods_viewState extends State<Nongoods_view> {
                         SizedBox(
                           width: 10,
                         ),
-                        SizedBox(
-                          child: Text(
-                            'Filter :',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontFamily: 'lumintoo',
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -116,6 +105,17 @@ class _Nongoods_viewState extends State<Nongoods_view> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            SizedBox(
+                              child: Text(
+                                'Filter :',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontFamily: 'lumintoo',
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
                             Row(
                               children: [
                                 Text('Provinsi ',
