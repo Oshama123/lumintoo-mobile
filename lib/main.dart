@@ -20,6 +20,10 @@ class MyApp extends StatelessWidget {
           return SplashScreen();
         } else {
           return MaterialApp(
+            theme: ThemeData(
+              scaffoldBackgroundColor: Colors.white,
+              canvasColor: Colors.black,
+            ),
             debugShowCheckedModeBanner: false,
             home: Navigation(),
           );
