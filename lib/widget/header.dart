@@ -37,8 +37,7 @@ class header extends StatelessWidget {
             Expanded(
                 flex: 5,
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InkWell(
                       onTap: () {},

@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../widget/sidenavigation.dart';
+import '../widget/header.dart';
 
 class Leaderboard_view extends StatefulWidget {
   @override
@@ -14,176 +14,84 @@ class _Leaderboard_viewState extends State<Leaderboard_view> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          ClipPath(
-            child: Container(
-              height: 170,
-              color: Color.fromARGB(255, 248, 223, 106),
-            ),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          SizedBox(
+            height: 0.4,
+          ),
+          Container(
+            height: 120,
+            color: Color.fromARGB(255, 0, 0, 0),
+            child: header(),
           ),
           Container(
             child: Column(
               children: [
-                Column(
-                  children: [
-                    ClipPath(
-                      clipper: ClipInfoClass(),
-                      child: Container(
-                        padding: EdgeInsets.only(top: 50),
-                        margin: EdgeInsets.symmetric(horizontal: 25),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                SizedBox(
-                                  height: 15.0,
-                                  child: Text(
-                                    "Halo, Gabung Dengan Lumintoo Yuk",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'lumintoo',
-                                        fontSize: 16.0),
-                                  ),
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.menu, color: Colors.black),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => SidenavButton(),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
+                CarouselSlider(
+                  options: CarouselOptions(
+                    aspectRatio: 16 / 7,
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    viewportFraction: 1.2,
+                  ),
+                  items: [
+                    AssetImage("assets/images/1a.jpg"),
+                    AssetImage("assets/images/1.jpg"),
+                    AssetImage("assets/images/map.jpg"),
+                  ].map((image) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.symmetric(horizontal: 5.0),
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 77, 76, 76),
+                            image: DecorationImage(
+                              image: image,
+                              fit: BoxFit.cover,
                             ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Row(
-                                children: [
-                                  SizedBox(width: 10),
-                                  Expanded(
-                                    child: TextField(
-                                      textAlign: TextAlign.center,
-                                      decoration: InputDecoration(
-                                        hintText:
-                                            "Search Products, Brands, Or Nongoods",
-                                        border: InputBorder.none,
-                                        hintStyle: TextStyle(
-                                          fontFamily: 'lumintoo',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              //Navigator.pushReplacement(
+                              //  );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: double.infinity,
                             ),
-                            SizedBox(height: 40),
-                          ],
-                        ),
-                      ),
-                    ),
-                    CarouselSlider(
-                      options: CarouselOptions(
-                        aspectRatio: 8 / 2.7,
-                        autoPlay: true,
-                        viewportFraction: 2,
-                      ),
-                      items: [
-                        AssetImage("assets/images/1a.jpg"),
-                      ].map((image) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Container(
-                              width: MediaQuery.of(context).size.width,
-                              margin: EdgeInsets.symmetric(horizontal: 2.0),
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 77, 76, 76),
-                                image: DecorationImage(
-                                  image: image,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            );
-                          },
+                          ),
                         );
-                      }).toList(),
-                    ),
-                    SizedBox(height: 15),
-                  ],
+                      },
+                    );
+                  }).toList(),
+                ),
+                SizedBox(
+                  height: 70,
                 ),
                 Container(
-                  height: 7,
-                  color: Colors.grey[300],
-                ),
-                Expanded(
-                  child: Container(
-                    // color: Colors.purple,
-                    child: Column(
-                      children: [
-                        // body
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 40,
-                                  ),
-                                  Container(
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 20),
-                                      width: 160,
-                                      child: Text('Tunggu Kehadiran Kami, ya',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'lumintoo',
-                                            color: Colors.black,
-                                            fontSize: 20,
-                                          )),
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Container(
-                                      padding: EdgeInsets.only(bottom: 20),
-                                      width: 160,
-                                      child: Text('Coming Soon'.toUpperCase(),
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontFamily: 'lumintoo',
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                            fontSize: 40,
-                                          )),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 135,
+                        child: Text(
+                          'Comming Soon',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 35,
+                              fontFamily: 'lumintoo',
+                              fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(
-                          height: minHeight,
-                        ),
-                        // Navigation
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
               ],
             ),
           )
-        ],
+        ]),
       ),
     );
   }

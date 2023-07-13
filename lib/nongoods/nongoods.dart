@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../widget/header.dart';
 import '../widget/iconkategori.dart';
-import '../widget/sidenavigation.dart';
 
 class Nongoods_view extends StatefulWidget {
   @override
@@ -14,386 +14,404 @@ class _Nongoods_viewState extends State<Nongoods_view> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          ClipPath(
-            child: Container(
-              height: 170,
-              color: Color.fromARGB(255, 248, 223, 106),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 0.4,
             ),
-          ),
-          Container(
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    ClipPath(
-                      clipper: ClipInfoClass(),
-                      child: Container(
-                        padding: EdgeInsets.only(top: 50),
-                        margin: EdgeInsets.symmetric(horizontal: 25),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                SizedBox(
-                                  height: 15.0,
-                                  child: Text(
-                                    "Halo, Gabung Dengan Lumintoo Yuk",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'lumintoo',
-                                        fontSize: 16.0),
-                                  ),
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.menu, color: Colors.black),
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => SidenavButton(),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Row(
-                                children: [
-                                  SizedBox(width: 10),
-                                  Expanded(
-                                    child: TextField(
-                                      textAlign: TextAlign.center,
-                                      decoration: InputDecoration(
-                                        hintText:
-                                            "Search Products, Brands, Or Nongoods",
-                                        border: InputBorder.none,
-                                        hintStyle: TextStyle(
-                                          fontFamily: 'lumintoo',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+            Container(
+              height: 120,
+              color: Color.fromARGB(255, 0, 0, 0),
+              child: header(),
+            ),
+            Container(
+              child: Column(
+                children: [
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      aspectRatio: 16 / 7,
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                      viewportFraction: 1.2,
+                    ),
+                    items: [
+                      AssetImage("assets/images/1a.jpg"),
+                      AssetImage("assets/images/1.jpg"),
+                      AssetImage("assets/images/map.jpg"),
+                    ].map((image) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: EdgeInsets.symmetric(horizontal: 5.0),
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 77, 76, 76),
+                              image: DecorationImage(
+                                image: image,
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            SizedBox(height: 40),
-                          ],
-                        ),
-                      ),
-                    ),
-                    CarouselSlider(
-                      options: CarouselOptions(
-                        aspectRatio: 8 / 2.7,
-                        autoPlay: true,
-                        viewportFraction: 2,
-                      ),
-                      items: [
-                        AssetImage("assets/images/1a.jpg"),
-                      ].map((image) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Container(
-                              width: MediaQuery.of(context).size.width,
-                              margin: EdgeInsets.symmetric(horizontal: 2.0),
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 77, 76, 76),
-                                image: DecorationImage(
-                                  image: image,
-                                  fit: BoxFit.cover,
-                                ),
+                            child: InkWell(
+                              onTap: () {
+                                //Navigator.pushReplacement(
+                                //  );
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: double.infinity,
                               ),
-                            );
-                          },
-                        );
-                      }).toList(),
-                    ),
-                    SizedBox(height: 15),
-                  ],
-                ),
-                Container(
-                  height: 7,
-                  color: Colors.grey[300],
-                ),
-                Expanded(
-                  child: Container(
-                    // color: Colors.purple,
-                    child: Column(
+                            ),
+                          );
+                        },
+                      );
+                    }).toList(),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // body
-                        Expanded(
-                          child: ListView(
-                            padding: EdgeInsets.symmetric(horizontal: 25),
-                            children: [
-                              SizedBox(height: 16),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconKategori(
-                                      title: "Car Repair Shop",
-                                      icon: "assets/icons/carRepair-active.png",
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    IconKategori(
-                                      title: "Bike Shope",
-                                      icon: "assets/icons/bikeshope-active.png",
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    IconKategori(
-                                      title: "Wheel & Rims Shop",
-                                      icon: "assets/icons/Wheel-active.png",
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    IconKategori(
-                                      title: "Body Workshop",
-                                      icon: "assets/icons/bodyWorkshop.png",
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    IconKategori(
-                                      title: "Specialist Workshop",
-                                      icon:
-                                          "assets/icons/specialistWorkshop.png",
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    IconKategori(
-                                      title: "Automotive Dealer",
-                                      icon: "assets/icons/bike.png",
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Container(
-                                margin: EdgeInsets.only(top: 10),
-                                padding: EdgeInsets.symmetric(vertical: 20),
-                                child: Text('Filter',
-                                    style: TextStyle(
-                                        fontSize: 40,
-                                        fontFamily: 'Lumintoo',
-                                        color: Colors.black)),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Container(
-                                child: Text(
-                                  'Provinsi',
-                                  style: TextStyle(
-                                      fontFamily: 'lumintoo',
-                                      fontSize: 14,
-                                      color: Colors.black),
-                                ),
-                              ),
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Container(
-                                    color: Color.fromARGB(255, 252, 249, 234),
-                                    padding: EdgeInsets.all(16),
-                                    child: Container(
-                                      child: Column(
-                                        children: [
-                                          SizedBox(height: 20),
-                                          ElevatedButton(
-                                              onPressed: () {},
-                                              style: ElevatedButton.styleFrom(
-                                                primary: Colors.black,
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 12.0,
-                                                    horizontal: 24.0),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
-                                              ),
-                                              child: Text(
-                                                'Apply',
-                                                style: TextStyle(
-                                                    fontFamily: 'lumintoo',
-                                                    color: Color.fromARGB(
-                                                        255, 248, 223, 106)),
-                                              ))
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 25),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    padding: EdgeInsets.all(10),
-                                    color: Color.fromARGB(255, 248, 223, 106),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      'Car',
-                                      style: TextStyle(
-                                          fontFamily: 'lumintoo',
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 20),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(height: 40),
-                                          Text(
-                                            'Tingkatkan Poinmu dengan Tambah Produk, Yuk! ',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontFamily: 'lumintoo'),
-                                          ),
-                                          Icon(
-                                            Icons.thumb_up,
-                                            color: Colors.yellow,
-                                          ),
-                                        ],
-                                      ),
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 20,
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.black45))),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 25),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    padding: EdgeInsets.all(10),
-                                    color: Color.fromARGB(255, 248, 223, 106),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      'Motor Ciycle',
-                                      style: TextStyle(
-                                          fontFamily: 'lumintoo',
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 20),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(height: 40),
-                                          Text(
-                                            'Tingkatkan Poinmu dengan Tambah Produk, Yuk! ',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontFamily: 'lumintoo'),
-                                          ),
-                                          Icon(
-                                            Icons.thumb_up,
-                                            color: Colors.yellow,
-                                          ),
-                                        ],
-                                      ),
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 20,
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.black45))),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 25),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    padding: EdgeInsets.all(10),
-                                    color: Color.fromARGB(255, 248, 223, 106),
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      'Bycile',
-                                      style: TextStyle(
-                                          fontFamily: 'lumintoo',
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                          fontSize: 20),
-                                    ),
-                                  ),
-                                  SizedBox(height: 10),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(height: 40),
-                                          Text(
-                                            'Tingkatkan Poinmu dengan Tambah Produk, Yuk! ',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontFamily: 'lumintoo'),
-                                          ),
-                                          Icon(
-                                            Icons.thumb_up,
-                                            color: Colors.yellow,
-                                          ),
-                                        ],
-                                      ),
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 20,
-                                        decoration: BoxDecoration(
-                                            border: Border(
-                                                bottom: BorderSide(
-                                                    color: Colors.black45))),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ],
+                        SizedBox(
+                          width: 10,
+                        ),
+                        IconKategori(
+                          title: "Car",
+                          icon: "assets/icons/car.png",
+                        ),
+                        IconKategori(
+                          title: "Motor Cycle",
+                          icon: "assets/icons/motorcyle.png",
+                        ),
+                        IconKategori(
+                          title: "Bycile",
+                          icon: "assets/icons/bike.png",
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        SizedBox(
+                          child: Text(
+                            'Filter :',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'lumintoo',
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
-                        // Navigation
                       ],
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(40),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Text('Provinsi ',
+                                    style: TextStyle(
+                                        fontFamily: 'lumintoo',
+                                        fontSize: 14,
+                                        color: Colors.black)),
+                                SizedBox(width: 15),
+                                Expanded(
+                                    child: TextField(
+                                  keyboardType: TextInputType.text,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]'))
+                                  ],
+                                  decoration: InputDecoration(
+                                      prefixText: 'Rp. ',
+                                      prefixStyle:
+                                          TextStyle(fontFamily: 'lumintoo')),
+                                ))
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.black,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 12.0, horizontal: 24.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                child: Text(
+                                  'Apply',
+                                  style: TextStyle(
+                                      fontFamily: 'lumintoo',
+                                      color:
+                                          Color.fromARGB(255, 248, 223, 106)),
+                                ))
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        borderRadius: BorderRadius.circular(20)),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Car',
+                      style: TextStyle(
+                          fontFamily: 'lumintoo',
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 20),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(20),
+                        width: 200,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xfff8e172)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 78,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    child: Image.asset(
+                                      'assets/icons/icon.png',
+                                      width: 27,
+                                      height: 27,
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(bottom: 30),
+                                    height: double.infinity,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          width: 20,
+                                          height: 20,
+                                          child: Image.asset(
+                                            'assets/icons/star.png',
+                                            width: 20,
+                                            height: 29,
+                                          ),
+                                        ),
+                                        Text('0',
+                                            style: TextStyle(
+                                                fontFamily: 'lumintoo',
+                                                fontSize: 9,
+                                                height: 2,
+                                                color: Colors.black)),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(bottom: 30),
+                                    height: double.infinity,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          width: 20,
+                                          height: 20,
+                                          child: Image.asset(
+                                            'assets/icons/thubsUp.png',
+                                            width: 20,
+                                            height: 29,
+                                          ),
+                                        ),
+                                        Text('Belum ada',
+                                            style: TextStyle(
+                                                fontFamily: 'lumintoo',
+                                                fontSize: 9,
+                                                height: 2,
+                                                color: Colors.black)),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 40),
+                              width: double.infinity,
+                              height: 100,
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    child: Align(
+                                      child: SizedBox(
+                                        width: 400,
+                                        height: 400,
+                                        child: Image.asset(
+                                            'assets/images/1.jpg',
+                                            fit: BoxFit.contain),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 94),
+                                    child: Align(
+                                      child: SizedBox(
+                                        width: double.infinity,
+                                        height: 100,
+                                        child: Text(
+                                            'Lorem Product'.toUpperCase(),
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontFamily: 'lumintoo',
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black)),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 20,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(color: Colors.black45))),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 25),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        borderRadius: BorderRadius.circular(20)),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Motor Ciycle',
+                      style: TextStyle(
+                          fontFamily: 'lumintoo',
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 20),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 40),
+                          Text(
+                            'Tingkatkan Poinmu dengan Tambah Produk, Yuk! ',
+                            style: TextStyle(
+                                color: Colors.black, fontFamily: 'lumintoo'),
+                          ),
+                          Icon(
+                            Icons.thumb_up,
+                            color: Colors.yellow,
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 20,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(color: Colors.black45))),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 25),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        borderRadius: BorderRadius.circular(20)),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Bycile',
+                      style: TextStyle(
+                          fontFamily: 'lumintoo',
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 20),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 40),
+                          Text(
+                            'Tingkatkan Poinmu dengan Tambah Produk, Yuk! ',
+                            style: TextStyle(
+                                color: Colors.black, fontFamily: 'lumintoo'),
+                          ),
+                          Icon(
+                            Icons.thumb_up,
+                            color: Colors.yellow,
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 20,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(color: Colors.black45))),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -434,42 +452,4 @@ class ItemKategori extends StatelessWidget {
       ],
     );
   }
-}
-
-class ClipInfoClass extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    path.lineTo(0, size.height);
-    path.lineTo(size.width - 80, size.height);
-    path.lineTo(size.width, size.height - 80);
-    path.lineTo(size.width, 0);
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
-}
-
-class ClipPathClass extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    path.lineTo(0, size.height - 60);
-    path.quadraticBezierTo(
-      size.width / 2,
-      size.height,
-      size.width,
-      size.height - 60,
-    );
-    path.lineTo(size.width, 0);
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }
